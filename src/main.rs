@@ -18,10 +18,10 @@ fn main() {
 
 
 fn run_simulation() {
-    let n_sweeps = 10000;
+    let n_sweeps = 50000;
     let n = 32;
     let j = 1.;
-    let beta = 1.;
+    let beta = 0.5; // T=2
     let b = 0.;
 
     let mut torus = Torus::new(n, INF);
