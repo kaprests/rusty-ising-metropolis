@@ -2,7 +2,7 @@
 Lattices
 */
 
-use ndarray::{Array, Array2, Array1, arr1};
+use ndarray::{Array2, Array1};
 use ndarray_rand::RandomExt;
 use ndarray_rand::rand_distr::Uniform;
 
@@ -17,10 +17,11 @@ pub const INF: usize = 1;
 //////////////////////////////////
 pub trait Lattices {
     fn get_n(&self) -> usize {println!("Not implemented"); 1}
-    fn get_spin(&self, x: usize, y: usize) -> i32 {println!("Not implemented"); 1}
-    fn get_sum_nn_spins(&self, x: usize, y: usize) -> i32 {println!("Not implemented"); 1}
-    fn delta_energy_flip(&self, x: usize, y: usize, j: f32) -> f32 {println!("Not implemented"); 1.}
-    fn hamiltonian(&self, j: f32, b: f32) -> f32 {println!("Not implemented"); 1.}
+    fn get_spin(&self, _x: usize, _y: usize) -> i32 {println!("Not implemented"); 1}
+    fn flip_spin(&mut self, _x: usize, _y: usize) {println!("Not implemented")}
+    fn get_sum_nn_spins(&self, _x: usize, _y: usize) -> i32 {println!("Not implemented"); 1}
+    fn delta_energy_flip(&self, _x: usize, _y: usize, _j: f32) -> f32 {println!("Not implemented"); 1.}
+    fn hamiltonian(&self, _j: f32, _b: f32) -> f32 {println!("Not implemented"); 1.}
 }
 
 
@@ -87,6 +88,11 @@ impl Lattices for Torus {
     }
 
 
+    fn flip_spin(&mut self, x: usize, y: usize) {
+        self.matrix[[y, x]] *= -1;
+    }
+
+
     fn get_sum_nn_spins(&self, x: usize, y: usize) -> i32 {
         let left = self.get_spin(self.idx_min[x], y);
         let right = self.get_spin(self.idx_plus[x], y);
@@ -98,7 +104,7 @@ impl Lattices for Torus {
 
 
     fn delta_energy_flip(&self, x: usize, y: usize, j: f32) -> f32 {
-        (2*self.get_spin(x, y) * self.get_sum_nn_spins(x, y)) as f32 * j
+        2.*j*(self.get_spin(x, y) * self.get_sum_nn_spins(x, y)) as f32
     }
 
 
