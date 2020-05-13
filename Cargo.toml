@@ -1,0 +1,11 @@
+[package]
+name = "ising_monte_carlo"
+version = "0.1.0"
+authors = ["Knut Andre Grytting Prestsveen <kaprests@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+ndarray = "0.13.1"
+ndarray-rand = "0.11.0"
