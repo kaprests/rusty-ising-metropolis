@@ -15,6 +15,7 @@ pub const INF: usize = 1;
 //////////////////////////////////
 // Traits, common functionality //
 //////////////////////////////////
+// IMPROVEMENT: Functional default implementations with generic types
 pub trait Lattices {
     fn get_n(&self) -> usize {println!("Not implemented"); 1}
     fn get_spin(&self, _x: usize, _y: usize) -> i32 {println!("Not implemented"); 1}
@@ -123,15 +124,12 @@ impl Lattices for Torus {
 }
 
 
-
-
 #[cfg(test)]
 mod tests {
     #[test]
     fn print() {
-        println!("This is a test");
+        println!("This is a test, sort of");
     }
 }
-
 
 

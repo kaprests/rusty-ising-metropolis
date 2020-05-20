@@ -1,5 +1,5 @@
 /* 
-Binary crate with functions implementing the Metropolis algorithm for Ising lattices.
+Functions implementing the Metropolis algorithm for Ising lattices.
 
 Three functions:
 
@@ -7,6 +7,8 @@ Three functions:
 * lattice_sweep
 * simulation
 
+IMPROVEMENT: Use generic types to support other, potentially implemented lattices in the future
+    - Also: Precalculate Gaussian weight values
 */
 use ndarray::Array1;
 use ndarray_rand::RandomExt;
@@ -71,9 +73,5 @@ pub fn simulate(t: &mut Torus, n_sweeps: usize, j: f32, beta: f64, b: f32) -> Ar
 
     energy_array
 }
-
-
-
-
 
 
